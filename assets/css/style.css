@@ -1,3 +1,13 @@
 .jumbotron{
-    background-image: url("/assets/images/train.jpg")
+    background: darkblue;
+    color: honeydew;
+}
+
+.card-header{
+    background: black;
+    color: honeydew;
+}
+
+#add-train-btn{
+    background: darkblue;
 }
