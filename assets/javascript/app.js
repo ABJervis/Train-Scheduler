@@ -1,18 +1,19 @@
-//intialize firebase - don't forget link on html
-
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyDCfcLpbbvChHnCsRvgumLJ1i30r30Emv0",
-    authDomain: "train-scheduler-65be7.firebaseapp.com",
-    databaseURL: "https://train-scheduler-65be7.firebaseio.com",
-    projectId: "train-scheduler-65be7",
-    storageBucket: "train-scheduler-65be7.appspot.com",
-    messagingSenderId: "949919316762"
-};
+    apiKey: "AIzaSyCMvLXU1Vwr-fePiZfVzwszSFMq0Rq8j8w",
+    authDomain: "train-try-2.firebaseapp.com",
+    databaseURL: "https://train-try-2.firebaseio.com",
+    projectId: "train-try-2",
+    storageBucket: "train-try-2.appspot.com",
+    messagingSenderId: "194125010521"
+  };
+  firebase.initializeApp(config);
 
-firebase.initializeApp(config);
 
 var database = firebase.database();
+
+//moment variables
+
 
 
 //on click for submit of new train
@@ -71,13 +72,40 @@ database.ref().on("child_added", function(childSnapshot){
     console.log(trainTime);
     console.log(trainFrequency);
 
-//calculation for minutes remaining
-    
-    var interval = trainTime;
-    var minutesAway = [interval-(trainTime % interval)] + Moment();
-        console.log(minutesAway);
+//first time (push back 1 year to keep time accordingly)
+var firstMilitary = moment(trainTime, "HH:mm").subtract(1, "years");
+console.log(firstMilitary);
+
+//current time
+var currentTime = moment();
+console.log("current time: " + moment(currentTime).format("HH:mm"));
+
+var timeDifference = moment().diff(moment(firstMilitary), "minutes");
+console.log("difference: " + timeDifference);
+
+var tRemainder = timeDifference % trainFrequency;
+console.log(tRemainder);
+
+//Minutes until next train
+var tMinutes = trainFrequency - tRemainder;
+console.log("Minutes until: " + tMinutes);
+
+var nextTrain = moment().add(tMinutes, "minutes");
+console.log("arrival: "+ moment(nextTrain).format("hh:mm:"));
+
+var newRow = $("<tr>").append(
+    $("<td>").text(trainName),
+    $("<td>").text(trainDestination),
+    $("<td>").text(trainFrequency),
+    $("<td>").text(firstMilitary),
+    $("<td>").text(nextTrain)
+
+);
+
+//append new row to table
+
+$("#train-table > tbody").append(newRow);
+
 
 
 })
-
-//calulations//time should be stored as military time - look at moment am/pm

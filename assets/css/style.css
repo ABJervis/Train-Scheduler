@@ -1,6 +1,11 @@
 .jumbotron{
     background: darkblue;
     color: honeydew;
+    font-family: "trainsfont";
+}
+
+h1{
+    font-family: "trainsfont";
 }
 
 .card-header{
@@ -11,3 +16,4 @@
 #add-train-btn{
     background: darkblue;
 }
+
