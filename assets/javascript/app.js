@@ -7,13 +7,9 @@ var config = {
     storageBucket: "train-try-2.appspot.com",
     messagingSenderId: "194125010521"
   };
-  firebase.initializeApp(config);
-
+  !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
 var database = firebase.database();
-
-//moment variables
-
 
 
 //on click for submit of new train
@@ -25,13 +21,13 @@ $("#add-train-btn").on("click", function(event){
 
 var trainName = $("#train-name-input").val().trim();
 var trainDestination = $("#destination-input").val().trim();
-var trainTime = $("#time-input").val().trim();
+var trainFirstTime = $("#time-input").val().trim();
 var trainFrequency = $("#frequency-input").val().trim();
 
 var newTrain = {
-    train: trainName,
+    name: trainName,
     destination: trainDestination, 
-    train: trainTime,
+    time: trainFirstTime,
     frequency: trainFrequency
 };
 
@@ -39,12 +35,12 @@ var newTrain = {
 
 database.ref().push(newTrain);
 
-console.log(newTrain.train);
+console.log(newTrain.name);
 console.log(newTrain.destination);
 console.log(newTrain.time);
 console.log(newTrain.frequency)
 
-alert("Success");
+
 
 //clear all text-boxes
 
@@ -64,25 +60,27 @@ database.ref().on("child_added", function(childSnapshot){
 
     var trainName = childSnapshot.val().name;
     var trainDestination = childSnapshot.val().destination;
-    var trainTime = childSnapshot.val().time;
+    var trainFirstTime = childSnapshot.val().time;
     var trainFrequency = childSnapshot.val().frequency;
 
     console.log(trainName);
     console.log(trainDestination);
-    console.log(trainTime);
+    console.log(trainFirstTime);
     console.log(trainFrequency);
 
 //first time (push back 1 year to keep time accordingly)
-var firstMilitary = moment(trainTime, "HH:mm").subtract(1, "years");
-console.log(firstMilitary);
+var firstTrain = moment(trainFirstTime, "HH:mm").subtract(1, "years");
+console.log(firstTrain);
 
 //current time
 var currentTime = moment();
 console.log("current time: " + moment(currentTime).format("HH:mm"));
 
-var timeDifference = moment().diff(moment(firstMilitary), "minutes");
+//difference between times
+var timeDifference = moment().diff(moment(firstTrain), "minutes");
 console.log("difference: " + timeDifference);
 
+//remainder
 var tRemainder = timeDifference % trainFrequency;
 console.log(tRemainder);
 
@@ -91,14 +89,14 @@ var tMinutes = trainFrequency - tRemainder;
 console.log("Minutes until: " + tMinutes);
 
 var nextTrain = moment().add(tMinutes, "minutes");
-console.log("arrival: "+ moment(nextTrain).format("hh:mm:"));
+console.log("arrival: "+ moment(nextTrain).format("HH:mm"));
 
 var newRow = $("<tr>").append(
     $("<td>").text(trainName),
     $("<td>").text(trainDestination),
     $("<td>").text(trainFrequency),
-    $("<td>").text(firstMilitary),
-    $("<td>").text(nextTrain)
+    $("<td>").text(nextTrain),
+    $("<td>").text(tMinutes)
 
 );
 
