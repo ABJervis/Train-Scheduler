@@ -1,9 +1,9 @@
+
 .jumbotron{
-    background: darkblue;
+    background: rgb(4, 4, 90);
     color: honeydew;
-    font-family: "trainsfont";
-    padding: 20px;
     margin-top: 20px;
+    padding: 40px;
 }
 
 
@@ -13,13 +13,16 @@
 }
 
 #add-train-btn{
-    background: darkblue;
+    background: rgb(4, 4, 90);
 }
 
 body{
-    margin-left: 80px;
-    margin-right: 80px;
-    margin-bottom: 80px;
-    background: black;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    background: url(../images/traintrack.jpg);
+    font-family: 'Audiowide', cursive;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Electrolize', sans-serif;
 }
 
