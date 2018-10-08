@@ -1,12 +1,15 @@
 // Initialize Firebase
-var config = {
-    apiKey: "AIzaSyCMvLXU1Vwr-fePiZfVzwszSFMq0Rq8j8w",
-    authDomain: "train-try-2.firebaseapp.com",
-    databaseURL: "https://train-try-2.firebaseio.com",
-    projectId: "train-try-2",
-    storageBucket: "train-try-2.appspot.com",
-    messagingSenderId: "194125010521"
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDdgx6MhNSYPkz8wPvtPdE2B-zlT5WOjeg",
+    authDomain: "train-table-bd21a.firebaseapp.com",
+    databaseURL: "https://train-table-bd21a.firebaseio.com",
+    projectId: "train-table-bd21a",
+    storageBucket: "train-table-bd21a.appspot.com",
+    messagingSenderId: "902701370580"
   };
+  
+  
   !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
 var database = firebase.database();

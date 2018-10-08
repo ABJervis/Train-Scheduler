@@ -2,11 +2,10 @@
     background: darkblue;
     color: honeydew;
     font-family: "trainsfont";
+    padding: 20px;
+    margin-top: 20px;
 }
 
-h1{
-    font-family: "trainsfont";
-}
 
 .card-header{
     background: black;
@@ -15,5 +14,12 @@ h1{
 
 #add-train-btn{
     background: darkblue;
+}
+
+body{
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-bottom: 80px;
+    background: black;
 }
 
